@@ -1,44 +1,153 @@
-
-.titulo{
+body {
   font-family: 'Arial', sans-serif;
+  background-image: url("fondo.jpg");
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center; /* Centra la imagen de fondo */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo {
   font-size: 36px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background: linear-gradient(to right, rgb(55, 3, 59), rgb(126, 231, 250));
-  -webkit-background-clip: text;
-  color: transparent;
+  color: rgb(128, 98, 151); /* Morado sólido */
   padding: 10px;
   margin-bottom: 20px;
-  border-bottom: 4px solid #38bcc5;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 0 25px rgba(128, 98, 151, 0.6); /* Sombra sutil */
+  transition: transform 0.3s ease-in-out, color 0.3s ease; /* Animación suave */
+}
+
+.titulo:hover {
+  transform: scale(1.05); /* Efecto de aumento */
+  color: rgb(90, 70, 120); /* Un morado más oscuro al pasar el ratón */
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90%;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para que la imagen de fondo se vea sutilmente */
+  border-radius: 10px;
+  padding: 20px;
 }
+
 .top-container {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 20px;
 }
+
 .container {
-  width: 45%;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
+h1 {
+  font-size: 22px;
+  color: rgb(128, 98, 151); /* Color morado suave */
+  border-bottom: 2px solid #9cddc9; /* Verde menta suave */
+  padding-bottom: 5px;
+}
+
 .bottom-container {
   width: 100%;
   margin-top: 20px;
   text-align: center;
 }
 
-.palito{
-  background: linear-gradient(to right, rgb(55, 3, 59), rgb(126, 231, 250));
+.palito {
+  background: linear-gradient(to right, rgb(178, 96, 150), rgb(166, 224, 195)); /* Morado y verde menta */
   -webkit-background-clip: text;
   color: transparent;
   width: 100%;
   margin-top: auto;
-  border-bottom: 4px solid #38bcc5;
+  border-bottom: 4px solid #9cddc9;
+}
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Tamaño del botón */
+  height: 60px;
+  border-radius: 50%; /* Botón redondeado */
+  background-color: #D3A5F7; /* Rosa pastel suave */
+  color: white;
+  font-size: 30px; /* Aumento del tamaño de la fuente */
+  border: none;
+  cursor: pointer;
+  margin-top: 20px; /* Separación superior */
+  margin-bottom: 20px; /* Separación inferior */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.add-task-btn:hover {
+  background-color: #B672F6; /* Rosa más fuerte al pasar el ratón */
+  transform: scale(1.1); /* Efecto de aumentar el tamaño del botón */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+}
+
+.add-task-btn:active {
+  background-color: #9A50D1; /* Un tono más oscuro cuando se hace clic */
+  transform: scale(0.98); /* Efecto de contracción al hacer clic */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra normal al hacer clic */
+}
+
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  transition: border-bottom 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-bottom: 2px solid #9cddc9; /* Verde menta */
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-left: 10px;
+}
+
+#realizado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#realizado form {
+  display: flex;
 }

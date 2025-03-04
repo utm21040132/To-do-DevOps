@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list</title>
+    <title>To Do List</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #realizado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #realizado form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        #realizado input {
+            text-align: center;
+            flex-grow: 1;
+        }
+    </style>
 </head>
-
 <body>
     <header class="titulo">CREA UNA LISTA DE LAS COSAS POR HACER</header>
     <div class="main-container">
         <div class="top-container">
-            <div class="container">
+            <div class="container" id="importante">
                 <h1>IMPORTANTE</h1>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
+                <button onclick="agregarTarea('importante')">Agregar Tarea</button>
             </div>
-            <div class="container">
+            <div class="container" id="urgente">
                 <h1>URGENTE</h1>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
-                <form>
-                    <input type="text" placeholder="Escribe tu pendiente">
-                    <input type="checkbox">
-                </form>
+                <button onclick="agregarTarea('urgente')">Agregar Tarea</button>
             </div>
         </div>
-        <div class="bottom-container">
-            <div class="palito"></div>
+        <div class="bottom-container" id="realizado">
             <h1>REALIZADO</h1>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
-            <form>
-                <input type="text" placeholder="Escribe tu pendiente">
-                <input type="checkbox">
-            </form>
         </div>
     </div>
-</body>
+    <script>
+        function agregarTarea(categoria) {
+            const contenedor = document.getElementById(categoria);
+            const form = document.createElement('form');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Escribe tu pendiente';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.onchange = function() {
+                if (this.checked) {
+                    moverARealizado(this, input.value);
+                    form.remove();
+                }
+            };
+            
+            form.appendChild(input);
+            form.appendChild(checkbox);
+            contenedor.appendChild(form);
+        }
 
+        function moverARealizado(checkbox, texto) {
+            const realizado = document.getElementById('realizado');
+            const form = document.createElement('form');
+            form.style.display = 'flex';
+            form.style.alignItems = 'center';
+            form.style.justifyContent = 'center';
+            form.style.width = '100%';
+            form.style.maxWidth = '400px';
+            
+            const fecha = document.createElement('span');
+            const fechaActual = new Date().toLocaleDateString(); 
+            fecha.textContent = `${fechaActual} -`;
+            fecha.style.marginRight = '10px';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = texto;
+            input.readOnly = true;
+            input.style.textAlign = 'center';
+            input.style.flexGrow = '1';
+            
+            const deleteBtn = document.createElement('span');
+            deleteBtn.innerHTML = '&#10060;'; // Icono de X
+            deleteBtn.style.cursor = 'pointer';
+            deleteBtn.style.marginLeft = '10px';
+            deleteBtn.onclick = function() {
+                form.remove();
+            };
+            
+            form.appendChild(fecha);
+            form.appendChild(input);
+            form.appendChild(deleteBtn);
+            realizado.appendChild(form);
+        }
+    </script>
+</body>
 </html>
